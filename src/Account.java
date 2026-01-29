@@ -1,7 +1,7 @@
-public class Account {
-    private String accountNo;
-    private Customer customer;
-    private double balance = 0.0;
+public abstract class Account {
+    protected final String accountNo;
+    protected final Customer customer;
+    protected double balance = 0.0;
 
     protected Account(String accountNo, Customer customer, double initialAmount) {
         this.accountNo = accountNo;
@@ -9,30 +9,16 @@ public class Account {
         this.balance = initialAmount;
     }
 
-    protected void getCustomerDetails() {
-        System.out.println("Full Name : " + customer.getFullName());
-        System.out.println("Date of Birth : " + customer.getDob());
-    }
+    public abstract void withdrawAmount(double amount);
 
-    protected String getAccountNo() {
-        return this.accountNo;
-    }
-
-    protected void withdrawAmount(double amount) {
-        if (amount > this.balance || amount < 1000) {
-            throw new IllegalArgumentException("Amount should be within the bank balance");
-        }
-        this.balance -= amount;
-    }
-
-    protected void depositAmount(double amount) {
-        if(amount >= Double.MAX_VALUE) {
+    public void depositAmount(double amount) {
+        if(amount <= 0) {
             throw new IllegalArgumentException("The Amount should be within Double datatype limit");
         }
         this.balance += amount;
     }
 
-    protected double getBalance() {
+    public double getBalance() {
         return this.balance;
     }
 }

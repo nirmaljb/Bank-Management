@@ -30,7 +30,15 @@ public class Bank  {
         return accounts.get(accountId);
     }
 
-    protected void closeAccount(String accountId) {
+    public void transfer(String senderId, String receiverId, double amount) {
+        Account senderAccount = getAccount(senderId);
+        Account receiverAccount = getAccount(receiverId);
+
+        senderAccount.withdrawAmount(amount);
+        receiverAccount.depositAmount(amount);
+    }
+
+    public void closeAccount(String accountId) {
         Account response = getAccount(accountId);
         if(response.getBalance() > 0) {
             throw new IllegalStateException("Balance must be zero inorder to close the account.");

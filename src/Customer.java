@@ -11,15 +11,15 @@ public class Customer {
         this.aadhaarNumber = aadhaarNumber;
     }
 
-    protected String getFullName() {
+    public String getFullName() {
         return this.fullName;
     }
 
-    protected LocalDate getDob() {
+    public LocalDate getDob() {
         return this.dob;
     }
 
-    protected String getAadhaarCard() {
+    public String getAadhaarCard() {
         return this.aadhaarNumber;
     }
 }
