@@ -2,6 +2,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+enum AccountType {
+    Savings,
+    Current
+}
+
 public class Bank  {
     private String bankName;
     private Map<String, Account> accounts;
@@ -11,10 +16,18 @@ public class Bank  {
         this.accounts = new HashMap<>();
     }
 
-    public Account register(Customer customer, double initialAmount) {
+    public Account register(Customer customer, double initialAmount, AccountType accountType) {
         KycValidator.validate(customer);
         String accountNo = generateAccountNo();
-        Account account = new Account(accountNo, customer, initialAmount);
+
+        Account account;
+
+        if(accountType == AccountType.Savings) {
+            account = new SavingsAccount(accountNo, customer, initialAmount);
+        }else {
+            account = new CurrentAccount(accountNo, customer, initialAmount);
+        }
+
         accounts.put(accountNo, account);
         return account;
     }
