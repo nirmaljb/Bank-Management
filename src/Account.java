@@ -1,10 +1,10 @@
 public class Account {
-    private String accountId;
+    private String accountNo;
     private Customer customer;
     private double balance = 0.0;
 
-    protected Account(String accountId, Customer customer, double initialAmount) {
-        this.accountId = accountId;
+    protected Account(String accountNo, Customer customer, double initialAmount) {
+        this.accountNo = accountNo;
         this.customer = customer;
         this.balance = initialAmount;
     }
@@ -14,8 +14,8 @@ public class Account {
         System.out.println("Date of Birth : " + customer.getDob());
     }
 
-    protected String getAccountId() {
-        return this.accountId;
+    protected String getAccountNo() {
+        return this.accountNo;
     }
 
     protected void withdrawAmount(double amount) {

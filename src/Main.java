@@ -9,10 +9,13 @@ public class Main {
         Bank sbi = new Bank("State Bank of India");
         Account sbi_account = sbi.register(csm1, 10000);
 
-        sbi_account.withdrawAmount(6000);
+        String accountNo = sbi_account.getAccountNo();
+        System.out.println(accountNo);
 
 
         double account_balance = sbi_account.getBalance();
         System.out.println(account_balance);
+
+        sbi.closeAccount("2dd674ad-4625-4dff-b388-991334ae8cb0");
     }
 }
