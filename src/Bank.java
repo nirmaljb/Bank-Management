@@ -14,7 +14,7 @@ public class Bank  {
     public Account register(Customer customer, double initialAmount) {
         String accountId = generateAccountId();
         Account account = new Account(accountId, customer, initialAmount);
-
+        accounts.put(accountId, account);
         return account;
     }
 

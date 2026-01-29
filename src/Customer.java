@@ -5,21 +5,21 @@ public class Customer {
     private LocalDate dob;
     private String aadharNumber;
 
-    public void create(String fullName, LocalDate dob, String aadharNumber) {
+    public Customer(String fullName, LocalDate dob, String aadharNumber) {
         this.fullName = fullName;
         this.dob = dob;
         this.aadharNumber = aadharNumber;
     }
 
-    public String getFullName() {
+    protected String getFullName() {
         return this.fullName;
     }
 
-    public LocalDate getDob() {
+    protected LocalDate getDob() {
         return this.dob;
     }
 
-    public String getAadharCard() {
+    protected String getAadharCard() {
         return this.aadharNumber;
     }
 }
