@@ -18,10 +18,6 @@ public class Bank  {
         return account;
     }
 
-    public
-
-
-
     private String generateAccountId() {
         return UUID.randomUUID().toString();
     }
