@@ -1,14 +1,14 @@
 import java.time.LocalDate;
 
 public class Customer {
-    private String fullName;
-    private LocalDate dob;
-    private String aadharNumber;
+    private final String fullName;
+    private final LocalDate dob;
+    private final String aadhaarNumber;
 
-    public Customer(String fullName, LocalDate dob, String aadharNumber) {
+    public Customer(String fullName, LocalDate dob, String aadhaarNumber) {
         this.fullName = fullName;
         this.dob = dob;
-        this.aadharNumber = aadharNumber;
+        this.aadhaarNumber = aadhaarNumber;
     }
 
     protected String getFullName() {
@@ -19,7 +19,7 @@ public class Customer {
         return this.dob;
     }
 
-    protected String getAadharCard() {
-        return this.aadharNumber;
+    protected String getAadhaarCard() {
+        return this.aadhaarNumber;
     }
 }

@@ -12,6 +12,7 @@ public class Bank  {
     }
 
     public Account register(Customer customer, double initialAmount) {
+        KycValidator.validate(customer);
         String accountNo = generateAccountNo();
         Account account = new Account(accountNo, customer, initialAmount);
         accounts.put(accountNo, account);
@@ -29,13 +30,12 @@ public class Bank  {
         return accounts.get(accountId);
     }
 
-    protected boolean closeAccount(String accountId) {
+    protected void closeAccount(String accountId) {
         Account response = getAccount(accountId);
         if(response.getBalance() > 0) {
             throw new IllegalStateException("Balance must be zero inorder to close the account.");
         }
         accounts.remove(accountId);
-        return true;
     }
 
     private String generateAccountNo() {

@@ -16,6 +16,6 @@ public class Main {
         double account_balance = sbi_account.getBalance();
         System.out.println(account_balance);
 
-        sbi.closeAccount("2dd674ad-4625-4dff-b388-991334ae8cb0");
+        sbi_account.getCustomerDetails();
     }
 }
