@@ -1,5 +1,6 @@
 public class SavingsAccount extends Account{
-    final double MINIMUM_AMOUNT = 1000;
+    private final double MINIMUM_AMOUNT = 1000;
+    private static final double INTEREST_RATE = 0.04;
 
     public SavingsAccount(String accountNo, Customer customer, double initialAmount) {
         super(accountNo, customer, initialAmount);
@@ -11,5 +12,9 @@ public class SavingsAccount extends Account{
             throw new IllegalArgumentException("Minimum balance violated. You need to have ₹" + MINIMUM_AMOUNT + " in your account.");
         }
         this.balance -= amount;
+    }
+
+    public void applyMonthlyInterest() {
+        this.balance += this.balance * INTEREST_RATE / 12;
     }
 }
