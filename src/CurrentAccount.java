@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 public class CurrentAccount extends Account {
     private final double MAXIMUM_OVERDRAFT = 5000;
     public CurrentAccount(String accNo, Customer customer, double initialAmount) {
@@ -10,5 +13,8 @@ public class CurrentAccount extends Account {
             throw new IllegalArgumentException("Insufficient funds");
         }
         this.balance -= amount;
+        String uuid = UUID.randomUUID().toString();
+        LocalDateTime currentTime = LocalDateTime.now();
+        transactions.add(new Transactions(uuid, accountNo, amount, TransactionType.WITHDRAW, currentTime));
     }
 }

@@ -1,7 +1,14 @@
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public abstract class Account {
     protected final String accountNo;
     protected final Customer customer;
     protected double balance = 0.0;
+
+    protected List<Transactions> transactions = new ArrayList<>();
 
     protected Account(String accountNo, Customer customer, double initialAmount) {
         this.accountNo = accountNo;
@@ -16,9 +23,17 @@ public abstract class Account {
             throw new IllegalArgumentException("The Amount should be within Double datatype limit");
         }
         this.balance += amount;
+
+        String uuid = UUID.randomUUID().toString();
+        LocalDateTime currentTime = LocalDateTime.now();
+        transactions.add(new Transactions(uuid, accountNo, amount, TransactionType.DEPOSIT, currentTime));
     }
 
     public double getBalance() {
         return this.balance;
+    }
+
+    public List<Transactions> getTransactions() {
+        return List.copyOf(transactions);
     }
 }

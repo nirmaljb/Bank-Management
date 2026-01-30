@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,9 +8,10 @@ public class Main {
         Customer csm1 = new Customer("Nirmal Jyoti Biswas", parsedDate, "564221235646");
 
         Bank sbi = new Bank("State Bank of India");
-        Account sbi_account = sbi.register(csm1, 10000, AccountType.Savings);
+        Account sbi_account = sbi.register(csm1, 10000, AccountType.Current);
 
-        sbi_account.withdrawAmount(9500);
+        sbi_account.withdrawAmount(9000);
+        sbi_account.depositAmount(2500);
         System.out.println(sbi_account.getBalance());
 
     }

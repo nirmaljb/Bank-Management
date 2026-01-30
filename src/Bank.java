@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -49,6 +50,12 @@ public class Bank  {
 
         senderAccount.withdrawAmount(amount);
         receiverAccount.depositAmount(amount);
+
+        String uuid = UUID.randomUUID().toString();
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        senderAccount.transactions.add(new Transactions(uuid, senderId, amount, TransactionType.TRANSFER_OUT, currentTime));
+        receiverAccount.transactions.add(new Transactions(uuid, receiverId, amount, TransactionType.TRANSFER_IN, currentTime));
     }
 
     public void closeAccount(String accountId) {
