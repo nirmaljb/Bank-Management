@@ -6,7 +6,7 @@ public class CurrentAccount extends Account {
 
     @Override
     public void withdrawAmount(double amount) {
-        if(this.balance - amount > -MAXIMUM_OVERDRAFT) {
+        if(this.balance - amount < -MAXIMUM_OVERDRAFT) {
             throw new IllegalArgumentException("Insufficient funds");
         }
         this.balance -= amount;
