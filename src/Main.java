@@ -1,18 +1,45 @@
 import java.time.LocalDate;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        LocalDate parsedDate = LocalDate.parse("2005-12-03");
+        Scanner scanner = new Scanner(System.in);
 
-        Customer csm1 = new Customer("Nirmal Jyoti Biswas", parsedDate, "564221235646");
+        System.out.print("Enter customer name: ");
+        String customerName = scanner.nextLine();
 
-        Bank sbi = new Bank("State Bank of India");
-        Account sbi_account = sbi.register(csm1, 10000, AccountType.Current);
+        System.out.print("Enter date of birth (yyyy-MM-dd): ");
+        String dobString = scanner.nextLine();
+        LocalDate parsedDate = LocalDate.parse(dobString);
 
-        sbi_account.withdrawAmount(9000);
-        sbi_account.depositAmount(2500);
-        System.out.println(sbi_account.getBalance());
+        System.out.print("Enter customer ID: ");
+        String customerId = scanner.nextLine();
 
+        Customer csm1 = new Customer(customerName, parsedDate, customerId);
+
+        System.out.print("Enter bank name: ");
+        String bankName = scanner.nextLine();
+        Bank bank = new Bank(bankName);
+
+        System.out.print("Enter initial deposit amount: ");
+        double initialAmount = scanner.nextDouble();
+
+        System.out.print("Enter account type (1 for Savings, 2 for Current): ");
+        int accountTypeChoice = scanner.nextInt();
+        AccountType accountType = (accountTypeChoice == 1) ? AccountType.Savings : AccountType.Current;
+
+        Account account = bank.register(csm1, initialAmount, accountType);
+
+        System.out.print("Enter amount to withdraw: ");
+        double withdrawAmount = scanner.nextDouble();
+        account.withdrawAmount(withdrawAmount);
+
+        System.out.print("Enter amount to deposit: ");
+        double depositAmount = scanner.nextDouble();
+        account.depositAmount(depositAmount);
+
+        System.out.println("\nFinal Balance: " + account.getBalance());
     }
 }
