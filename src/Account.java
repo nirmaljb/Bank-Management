@@ -19,7 +19,7 @@ public abstract class Account {
     public abstract void withdrawAmount(double amount);
 
     public void depositAmount(double amount) {
-        if(amount <= 0) {
+        if(amount < 0) {
             throw new IllegalArgumentException("The Amount should be within Double datatype limit");
         }
         this.balance += amount;
