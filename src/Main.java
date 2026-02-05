@@ -14,10 +14,10 @@ public class Main {
         String dobString = scanner.nextLine();
         LocalDate parsedDate = LocalDate.parse(dobString);
 
-        System.out.print("Enter customer ID: ");
-        String customerId = scanner.nextLine();
+        System.out.print("Enter Aadhaar Card: ");
+        String aadhaarCard = scanner.nextLine();
 
-        Customer csm1 = new Customer(customerName, parsedDate, customerId);
+        Customer csm1 = new Customer(customerName, parsedDate, aadhaarCard);
 
         System.out.print("Enter bank name: ");
         String bankName = scanner.nextLine();
