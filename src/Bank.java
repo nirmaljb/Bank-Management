@@ -8,7 +8,13 @@ enum AccountType {
     Current
 }
 
-public class Bank  {
+interface BankModel {
+    Account register(Customer customer, double initialAmount, AccountType accountType);
+    void transfer(String senderId, String receiverId, double amount);
+    void closeAccount(String accountId);
+}
+
+public class Bank implements BankModel{
     private String bankName;
     private Map<String, Account> accounts;
 
