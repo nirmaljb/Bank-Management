@@ -11,8 +11,18 @@ public class Main {
         String customerName = scanner.nextLine();
 
         System.out.println("Enter date of birth (yyyy-MM-dd): ");
-        String dobString = scanner.nextLine();
-        LocalDate parsedDate = LocalDate.parse(dobString);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate parsedDate = null;
+
+        while (parsedDate == null) {
+            String dobString = scanner.nextLine();
+            try {
+                parsedDate = LocalDate.parse(dobString, formatter);
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. Please enter in yyyy-MM-dd format: ");
+            }
+        }
+
 
         System.out.println("Enter Aadhaar Card: ");
         String aadhaarCard = scanner.nextLine();
@@ -53,11 +63,12 @@ public class Main {
         Account account = bank.register(csm1, initialAmount, accountType);
 
         while(true) {
+            System.out.println("\n");
             System.out.println("What do you want to do?");
             System.out.println("Press 1 to Check Balance");
             System.out.println("Press 2 to Deposit Amount");
             System.out.println("Press 3 to Withdraw Amount");
-            System.out.println("Press 4 to Close Amount");
+            System.out.println("Press 4 to Close Account");
             System.out.println("Press 5 to exit");
 
             System.out.println("Enter your choice: ");
@@ -69,7 +80,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Enter the Amount that you want to deposit : ");
-                    double amount = scanner.nextInt();
+                    double amount = scanner.nextDouble();
                     account.depositAmount(amount);
                     break;
                 case 3:
@@ -81,20 +92,20 @@ public class Main {
                     checker = true;
                     System.out.println("Are you sure that you want to close your account (y/n) ? : ");
                     while(checker) {
-                    char ch = scanner.next().charAt(0);
-                    switch (ch) {
-                        case 'y':
-                            bank.closeAccount(account.getAccountNo());
-                            System.out.println("Your account has been closed.");
-                            System.exit(0);
-                            break;
-                        case 'n':
-                            checker = false;
-                            break;
-                        default:
-                            System.out.println("Incorrect Option selected");
+                        char ch = scanner.next().charAt(0);
+                        switch (ch) {
+                            case 'y':
+                                bank.closeAccount(account.getAccountNo());
+                                System.out.println("Your account has been closed.");
+                                System.exit(0);
+                                break;
+                            case 'n':
+                                checker = false;
+                                break;
+                            default:
+                                System.out.println("Incorrect Option selected");
+                        }
                     }
-                }
                     break;
                 case 5:
                     System.out.println("Thanks for visiting the " + bank.getBankName());
