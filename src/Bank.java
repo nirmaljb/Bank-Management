@@ -23,6 +23,10 @@ public class Bank implements BankModel{
         this.accounts = new HashMap<>();
     }
 
+    public String getBankName() {
+        return this.bankName;
+    }
+
     public Account register(Customer customer, double initialAmount, AccountType accountType) {
         KycValidator.validate(customer);
         String accountNo = generateAccountNo();

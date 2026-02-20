@@ -39,6 +39,10 @@ public abstract class Account implements AccountModel {
         return this.balance;
     }
 
+    public String getAccountNo() {
+        return this.accountNo;
+    }
+
     public List<Transactions> getTransactions() {
         return List.copyOf(transactions);
     }
