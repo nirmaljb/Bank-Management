@@ -3,7 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class Account {
+interface AccountModel {
+    void withdrawAmount(double amount);
+    void depositAmount(double amount);
+    double getBalance();
+}
+
+public abstract class Account implements AccountModel {
     protected final String accountNo;
     protected final Customer customer;
     protected double balance = 0.0;
